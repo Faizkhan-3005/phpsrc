@@ -81,12 +81,48 @@ if (isset($_POST['btnsubmit'])) {
         }
         else {
             //echo "Registration successful";
-            $query = "insert into users(username,password) VALUES('$username','$password')";
+            $query = "INSERT INTO users(name, username, phone, email, gender, password) VALUES('$FullName', '$username', '$phone', '$email', '$gender', '$password')";
             if(mysqli_query($conn,$query)){
-                echo "Registration successful";
+                $_SESSION['success'] = "1";
+                $_SESSION['message'] = "Registration successful";
+                header("Location: login.php");
             }
             else{
                 echo "Failed to register user";
+            }
+        }
+    }
+
+    /* EDIT USER */
+    else if ($_POST['btnsubmit'] == "Update") {
+
+        $uid = $_POST['uid'] ?? '';
+        $username = $_POST['username'] ?? '';
+        $phone = $_POST['phone'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $gender = $_POST['gender'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $confirm_password = $_POST['confirm_password'] ?? '';
+
+        if (empty($uid) || empty($username) || empty($phone) || empty($email) || empty($gender) || empty($password) || empty($confirm_password)
+        ) {
+            echo "All fields are required";
+        }
+        else if ($password != $confirm_password) {
+            echo "Passwords do not match";
+        }
+        else if (strlen($password) < 8) {
+            echo "Password must be at least 8 characters";
+        }
+        else {
+            $query = "UPDATE users SET username='$username', phone='$phone', email='$email', gender='$gender', password='$password' WHERE id='$uid'";
+            if(mysqli_query($conn,$query)){
+                $_SESSION['success'] = "1";
+                $_SESSION['message'] = "User updated successfully";
+                header("Location: dashboard.php");
+            }
+            else{
+                echo "Failed to update user";
             }
         }
     }
