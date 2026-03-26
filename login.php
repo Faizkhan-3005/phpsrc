@@ -67,17 +67,6 @@ session_start();
                             }
                         }
                     }
-                    if(isset($_SESSION['success'])){
-                        if($_SESSION['success'] == "1"){
-                            if(isset($_SESSION['message'])){
-                                if($_SESSION['message'] != ""){
-                                    echo '<div style="color:green;">' . $_SESSION['message'] . '</div>';
-                                    unset($_SESSION['success']);
-                                    unset($_SESSION['message']);
-                                }
-                            }
-                        }
-                    }
                 ?>
             </div>
         </form>

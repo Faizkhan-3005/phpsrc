@@ -1,7 +1,8 @@
 <?php
 include("database.php");
 if(isset($_GET['id'])){
-    $id = $_GET['id'];
+    $id = base64_decode(base64_decode($_GET['id']));
+    $enc_id =$_GET['id'];
     $query = "select * from users where id = $id";
     $res = mysqli_query($conn,$query);
     $cnt = mysqli_num_rows($res);
@@ -18,7 +19,7 @@ else{
     <head><title>User Edit</title></head>
     <body>
         <form action="authentication.php" method="post">
-            <input type="hidden" name="uid" value="<?php echo $row['id'] ?>"  required />
+            <input type="hidden" name="uid" value="<?php echo $enc_id ?>"  required />
             Enter Your Username:
             <input type="text" name="username" value="<?php echo $row['username']  ?>" placeholder="Enter username" required>
             <br>

@@ -1,47 +1,38 @@
 <?php
-session_start();
-if (!isset($_SESSION['isloggedIn']) || $_SESSION['isloggedIn'] != "1") {
-    header("Location: login.php");
-    exit();
-}
 include("database.php");
 
-$query = "SELECT * FROM users";
-$res = mysqli_query($conn, $query);
+$query = "select * from users";
+$res = mysqli_query($conn,$query);
+$cnt = mysqli_num_rows($res);
 ?>
-
 <html>
-<head>
-    <title>Dashboard</title>
-</head>
-<body>
-    <h3>Dashboard page</h3>
-    <a href="logout.php">Logout</a>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-        <?php
-        while ($row = mysqli_fetch_assoc($res)) {
-            ?>
+    <head><title>Dashboard Page</title></head>
+    <body>
+        <h3>Users List</h3>
+        <table border="1">
             <tr>
-                <td><?php echo $row['id']; ?></td>
-                <td><?php echo $row['name']; ?></td>
-                <td><?php echo $row['email']; ?></td>
-                <td><?php echo $row['contact']; ?></td>
-                <td><?php echo $row['password']; ?></td>
-                <td>Edit | Delete</td>
-                <td> <a href="user_edit.php?id=<?php echo $row ['id'] ?>">Edit</td>
+                <th>#</th><th>Username</th><th>Contact</th><th>Email</th><th>Password</th><th>Actions</th>
             </tr>
-        <?php
-        }
-        else{
-            echo "<tr><td colspan ='6'>No data found</td></tr>";
-        }
-        ?>
-    </table>
-</body>
+            <?php
+                if($cnt > 0){
+                    $i=1;
+                    while($row = mysqli_fetch_assoc($res)){
+                        ?>
+                        <tr>
+                            <td><?php echo $i; ?></td>
+                            <td><?php echo $row['username']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><?php echo $row['contact']; ?></td>
+                            <td><?php echo $row['password']; ?></td>
+                            <td><a href="user_edit.php?id=<?php echo base64_encode(base64_encode($row['id'])) ?>">Edit</a> Delete</td>
+                        </tr>
+                        <?php
+                    }
+                }
+                else{
+                    echo "<tr><th colspan='6'>No Data Found</th></tr>";
+                }
+            ?>
+        </table>
+    </body>
 </html>
