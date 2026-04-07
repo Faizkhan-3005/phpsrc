@@ -25,6 +25,7 @@ $cnt = mysqli_num_rows($res);
                             <td><?php echo $row['contact']; ?></td>
                             <td><?php echo $row['password']; ?></td>
                             <td><a href="user_edit.php?id=<?php echo base64_encode(base64_encode($row['id'])) ?>">Edit</a> Delete</td>
+                            <a href=></a>
                         </tr>
                         <?php
                     }
@@ -34,5 +35,14 @@ $cnt = mysqli_num_rows($res);
                 }
             ?>
         </table>
+        <script type ="text/javascript">
+            function confirmDelete(){
+                if(confirm("Are you sure to delete this ")){
+                    return true;
+                }
+            }
+             
+
+        </script>
     </body>
 </html>
