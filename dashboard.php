@@ -6,8 +6,13 @@ $res = mysqli_query($conn,$query);
 $cnt = mysqli_num_rows($res);
 ?>
 <html>
-    <head><title>Dashboard Page</title></head>
+    <head>
+        <title>Dashboard Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
     <body>
+        <a href="logout.php" class="btn btn-primary">Logout</a>
         <h3>Users List</h3>
         <table border="1">
             <tr>
