@@ -14,7 +14,7 @@ if(isset($_GET['id'])){
 else{
     header("Location:dashboard.php");
 }
-?>
+?>  
 <html>
     <head><title>User Edit</title></head>
     <body>

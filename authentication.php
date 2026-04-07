@@ -23,15 +23,17 @@ if (isset($_POST['btnsubmit'])) {
             echo "Password must be at least 8 characters";
         }
         else if (strlen($password) > 8) {
-            $query = "select id,username,password from users where username = '$username'";
+            $userData = getUserData($conn, "", $username, "");
+            //$query = "select id,username,password from users where username = '$username'";
             //mysqli_query -> It executes the query from the db and stores the data in obj format
-            $res = mysqli_query($conn,$query);
+            //$res = mysqli_query($conn,$query);
             // mysqli_num_rows -> IT fetches the count of resultset that is fetched from the query
-            $cnt = mysqli_num_rows($res);
-            if($cnt > 0){
+            //$cnt = mysqli_num_rows($res);
+            if (count($userData) > 0) {
                 //mysqli_fetch_assoc -> Converts data from object format to Array format
-                $row = mysqli_fetch_assoc($res);
-                if($row['password'] == md5($password)){
+               //$row = mysqli_fetch_assoc($res);
+               $row = $userData[0]['password'];
+                if($row == md5($password)){
                         $_SESSION['username'] = $username;
                         $_SESSION['isloggedIn'] = "1";
                         header("Location: dashboard.php");
@@ -81,6 +83,8 @@ if (isset($_POST['btnsubmit'])) {
         }
         else {
             //echo "Registration successful";
+            $userData = getUserData($conn, "", $username, "");
+            if (count($userData) <= 0) {
             $enc_password = md5($password);
             $query = "insert into users(username,password) VALUES('$username','$enc_password')";
             if(mysqli_query($conn,$query)){
@@ -89,6 +93,8 @@ if (isset($_POST['btnsubmit'])) {
             else{
                 echo "Failed to register user";
             }
+             else{
+                echo "User Alredy Registered , kindly login";
         }
     }
     /* User Data Edit */
