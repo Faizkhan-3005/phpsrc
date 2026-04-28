@@ -1,12 +1,9 @@
 <?php
 include("database.php");
-<<<<<<< HEAD
 session_start();
 if(!(isset($_SESSION['isloggedIn']))){
     header("Location:logout.php");
 }
-=======
->>>>>>> f69271eda5e1ff414df6a1a22f677b1d475bd37c
 
 $query = "select * from users";
 $res = mysqli_query($conn,$query);
@@ -16,21 +13,12 @@ $cnt = mysqli_num_rows($res);
     <head>
         <title>Dashboard Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<<<<<<< HEAD
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
         <a href="logout.php" class="btn btn-warning">Logout</a>
         <h3>Users List</h3>
         <table border="1" class="table table-striped" style="width:100%">
-=======
-        <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    </head>
-    <body>
-        <a href="logout.php" class="btn btn-primary">Logout</a>
-        <h3>Users List</h3>
-        <table border="1">
->>>>>>> f69271eda5e1ff414df6a1a22f677b1d475bd37c
             <tr>
                 <th>#</th><th>Username</th><th>Contact</th><th>Email</th><th>Password</th><th>Actions</th>
             </tr>
