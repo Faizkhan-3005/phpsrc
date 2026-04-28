@@ -12,9 +12,15 @@ if(isset($_GET['id'])){
     }
 }
 else{
+<<<<<<< HEAD
     header("Location:logout.php");
 }
 ?>
+=======
+    header("Location:dashboard.php");
+}
+?>  
+>>>>>>> f69271eda5e1ff414df6a1a22f677b1d475bd37c
 <html>
     <head><title>User Edit</title></head>
     <body>

@@ -1,9 +1,12 @@
 <?php
 include("database.php");
+<<<<<<< HEAD
 session_start();
 if(!(isset($_SESSION['isloggedIn']))){
     header("Location:logout.php");
 }
+=======
+>>>>>>> f69271eda5e1ff414df6a1a22f677b1d475bd37c
 
 $query = "select * from users";
 $res = mysqli_query($conn,$query);
@@ -13,12 +16,21 @@ $cnt = mysqli_num_rows($res);
     <head>
         <title>Dashboard Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<<<<<<< HEAD
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
         <a href="logout.php" class="btn btn-warning">Logout</a>
         <h3>Users List</h3>
         <table border="1" class="table table-striped" style="width:100%">
+=======
+        <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <a href="logout.php" class="btn btn-primary">Logout</a>
+        <h3>Users List</h3>
+        <table border="1">
+>>>>>>> f69271eda5e1ff414df6a1a22f677b1d475bd37c
             <tr>
                 <th>#</th><th>Username</th><th>Contact</th><th>Email</th><th>Password</th><th>Actions</th>
             </tr>
@@ -26,8 +38,11 @@ $cnt = mysqli_num_rows($res);
                 if($cnt > 0){
                     $i=1;
                     while($row = mysqli_fetch_assoc($res)){
+<<<<<<< HEAD
                         $id = $row['id'];
                         $username = $row['username'];
+=======
+>>>>>>> f69271eda5e1ff414df6a1a22f677b1d475bd37c
                         ?>
                         <tr>
                             <td><?php echo $i; ?></td>
@@ -35,10 +50,15 @@ $cnt = mysqli_num_rows($res);
                             <td><?php echo $row['email']; ?></td>
                             <td><?php echo $row['contact']; ?></td>
                             <td><?php echo $row['password']; ?></td>
+<<<<<<< HEAD
                             <td>
                                 <a href="user_edit.php?id=<?php echo base64_encode(base64_encode($row['id'])) ?>">Edit</a> 
                                 <a href="javascript:void(0)" onclick="confirmDelete('<?php echo base64_encode($id);  ?>','<?php echo $username ?>')">Delete</a>
                             </td>
+=======
+                            <td><a href="user_edit.php?id=<?php echo base64_encode(base64_encode($row['id'])) ?>">Edit</a> Delete</td>
+                            <a href=></a>
+>>>>>>> f69271eda5e1ff414df6a1a22f677b1d475bd37c
                         </tr>
                         <?php
                     }
@@ -48,6 +68,7 @@ $cnt = mysqli_num_rows($res);
                 }
             ?>
         </table>
+<<<<<<< HEAD
         <script type="text/javascript">
             function confirmDelete(id,name){
                 if(confirm("Are you sure you want to Delete User "+name+"?")){
@@ -72,6 +93,16 @@ $cnt = mysqli_num_rows($res);
                         }});
                 }
             }
+=======
+        <script type ="text/javascript">
+            function confirmDelete(){
+                if(confirm("Are you sure to delete this ")){
+                    return true;
+                }
+            }
+             
+
+>>>>>>> f69271eda5e1ff414df6a1a22f677b1d475bd37c
         </script>
     </body>
 </html>
